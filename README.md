@@ -20,3 +20,15 @@ npm install -g gulp
 npm install -g browser-sync
 npm start
 ```
+
+# Run Tests
+
+Single Run
+```
+gulp test
+```
+
+Continuous Run
+```
+gulp test1
+```
