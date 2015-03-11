@@ -1,5 +1,7 @@
+var path = require('path');
 var dest = './dist',
-  src = './src';
+  src = './src',
+  karmaPath = path.join(__dirname, '../karma.conf.js');
 
 module.exports = {
   browserSync: {
@@ -11,9 +13,12 @@ module.exports = {
     ],
     open: true
   },
+  karma: karmaPath,
   markup: {
     src: src + "/**/*.html",
     dest: dest
   },
-  js: src + "/**/*.js"
+  js: src + "/**/*.js",
+  src: src,
+  dest: dest
 };

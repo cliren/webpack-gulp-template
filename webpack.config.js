@@ -12,10 +12,11 @@ module.exports = {
   },
   module: {
     loaders: [
+      {test: /jquery\.js$/, loader: "exports?jQuery!script"},
       {test: /\.handlebars$/, loader: 'handlebars-loader'},
       {test: /\.less$/, loader: "style!css!less"},
       {test: /\.css$/, loader: "style!css"},
-      {test: /\.(png|jpg)$/, loader: 'url-loader?limit=8192'} // inline base64 URLs for <=8k images, direct URLs for the rest
+      {test: /\.(otf|eot|png|gif|svg|ttf|woff|woff2)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader"}
     ],
     noParse: []
   },
@@ -23,12 +24,17 @@ module.exports = {
     root: [
       nodeModulesPath,
       bowerComponentsPath],
-    alias: {},
+    alias: {
+      "jquery$": "jquery/dist/jquery.js"
+    },
     extensions: ['',
       '.js',
       '.css']
   },
   plugins: [
+    new webpack.ProvidePlugin({
+      $: "jquery"
+    }),
     new webpack.optimize.DedupePlugin()
   ]
 };
